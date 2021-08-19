@@ -1,8 +1,8 @@
-com\mycompany\proyecto0g2\App.class
-com\mycompany\proyecto0g2\PartidaController.class
+com\mycompany\proyectopoo2g2\ReporteController.class
+com\mycompany\proyectopoo2g2\PartidaController$cuentaTiempo.class
 module-info.class
-com\mycompany\proyecto0g2\ReporteController.class
-com\mycompany\proyecto0g2\IniciaApp.class
-com\mycompany\proyecto0g2\AjustesController.class
-com\mycompany\proyecto0g2\MenuController.class
-com\mycompany\proyecto0g2\PartidaController$cuentaTiempo.class
+com\mycompany\proyectopoo2g2\IniciaApp.class
+com\mycompany\proyectopoo2g2\MenuController.class
+com\mycompany\proyectopoo2g2\PartidaController.class
+com\mycompany\proyectopoo2g2\App.class
+com\mycompany\proyectopoo2g2\AjustesController.class

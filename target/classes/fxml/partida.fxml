@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="553.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectopoo2g2.PartidaController">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <ImageView fitHeight="561.0" fitWidth="792.0" layoutX="-6.0" layoutY="-7.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../Cubierta/Mat.jpg" />
+               </image>
+            </ImageView>
+            <HBox fx:id="containerplayer" layoutX="180.0" layoutY="427.0" opacity="0.6" prefHeight="101.0" prefWidth="421.0" style="-fx-background-color: #808080;" />
+            <HBox fx:id="containerCPU" layoutX="180.0" layoutY="56.0" opacity="0.6" prefHeight="91.0" prefWidth="421.0" style="-fx-background-color: #808080;" />
+            <HBox fx:id="containerMazo" layoutX="35.0" layoutY="221.0" opacity="0.6" prefHeight="139.0" prefWidth="104.0" style="-fx-background-color: #5680aa;" />
+            <Label fx:id="tiempo" layoutX="393.0" layoutY="14.0" style="-fx-background-color: #5680aa;" text="Tiempo Transcurrido:">
+               <font>
+                  <Font name="Comic Sans MS" size="25.0" />
+               </font>
+            </Label>
+            <Label fx:id="jugador" layoutX="624.0" layoutY="437.0" prefHeight="18.0" prefWidth="67.0" style="-fx-background-color: #5680aa;" text="Jugador:">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Label>
+            <TilePane fx:id="containerCardsMesa" layoutX="179.0" layoutY="152.0" opacity="0.6" prefHeight="260.0" prefWidth="581.0" style="-fx-background-color: #aa5656;" />
+            <HBox fx:id="pilaCartasC" layoutX="35.0" layoutY="39.0" opacity="0.6" prefHeight="139.0" prefWidth="104.0" style="-fx-background-color: #aa5680;" />
+            <HBox fx:id="pilaCartasJ" layoutX="35.0" layoutY="394.0" opacity="0.6" prefHeight="139.0" prefWidth="104.0" style="-fx-background-color: #8056aa;" />
+            <Button fx:id="volverMenu" layoutX="12.0" layoutY="5.0" mnemonicParsing="false" onMouseClicked="#switchToMenu" prefHeight="26.0" prefWidth="79.0" text="Volver" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

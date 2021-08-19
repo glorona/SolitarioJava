@@ -36,7 +36,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>com.mycompany.proyectopoo2g2.App</mainClass>
+                    <mainClass>com.mycompany.proyectopoo2g2.IniciaApp</mainClass>
                 </configuration>
                 <executions>
                     <execution>
@@ -86,7 +86,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.mycompany.proyectopoo2g2.GUIStarter</mainClass> <!-- cambiar clase main -->
+                            <mainClass>com.mycompany.proyectopoo2g2.IniciaApp</mainClass> <!-- cambiar clase main -->
                         </manifest>
                     </archive>
                 </configuration>
@@ -101,7 +101,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.mycompany.proyectopoo2g2.GUIStarter</mainClass> <!-- cambiar clase main -->
+                            <mainClass>com.mycompany.proyectopoo2g2.IniciaApp</mainClass> <!-- cambiar clase main -->
                         </manifest>
                     </archive>
                 </configuration>
