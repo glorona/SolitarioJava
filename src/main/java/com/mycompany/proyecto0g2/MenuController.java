@@ -23,14 +23,14 @@ public class MenuController implements Initializable {
     
     @FXML
     private Button btnSettings;
-
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
     
-        @FXML
+    @FXML
     private void switchToAjustes() throws IOException {
         System.out.println("Cambiando escena");
         App.cambioScene("ajustes");

@@ -11,22 +11,25 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.control.ComboBox;
 
 /**
  * FXML Controller class
  *
  * @author gabri
  */
-public class AjustesController implements Initializable {
+public class AjustesController {
+    
+    @FXML
+    ComboBox cmbSugerencias;
+    @FXML
+    ComboBox cmbCartas;
+    
 
-
-    
-    
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+    public void initialize() {
+       cmbCartas.getItems().setAll("Españolas", "Poker");
+       cmbSugerencias.getItems().setAll("Si", "No");
+    }   
     @FXML
     private void switchToMenu() throws IOException {
         App.cambioScene("menu");

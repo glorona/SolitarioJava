@@ -22,13 +22,13 @@
             <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-      <ComboBox prefHeight="25.0" prefWidth="162.0" promptText="Elija un tipo de carta" />
+      <ComboBox fx:id="cmbCartas" prefHeight="25.0" prefWidth="162.0" promptText="Elija un tipo de carta" />
       <Label text="Mostrar sugerencias:">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <ComboBox prefWidth="150.0" promptText="Elija una opción" />
+      <ComboBox fx:id="cmbSugerencias" prefWidth="150.0" promptText="Elija una opción" />
       <Button fx:id="btnVolverMenu" mnemonicParsing="false" onMouseClicked="#switchToMenu" text="Volver" />
    </children>
 </VBox>
