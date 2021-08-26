@@ -58,7 +58,7 @@ public class Carta {
             return false;
         }
         final Carta other = (Carta) obj;
-        if (this.valor != other.valor) {
+        if (!this.valor.equals(other.valor)) {
             return false;
         }
         return true;
@@ -97,7 +97,7 @@ public class Carta {
     }
 
 
-    public Carta( String palo, String valor, String rutaimg) {
+    public Carta( String valor, String palo, String rutaimg) {
         this.palo = palo;
         this.valor = valor;
         this.rutaimg = rutaimg;
