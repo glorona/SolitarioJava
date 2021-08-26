@@ -15,13 +15,16 @@ import java.util.ArrayList;
 public class Jugador {
     private ArrayList<Carta> listaCartas;
     private ArrayList<Carta> pilaCartas;
+    private int pilasRobadas;
     private int puntos;
 
-    public Jugador(ArrayList<Carta> listaCartas, ArrayList<Carta> pilaCartas, int puntos) {
-        this.listaCartas = listaCartas;
-        this.pilaCartas = pilaCartas;
-        this.puntos = puntos;
+    public Jugador() {
+        this.listaCartas = new ArrayList<>();
+        this.pilaCartas = new ArrayList<>();
+        this.puntos = 0;
+        this.pilasRobadas = 0;
     }
+
 
     public ArrayList<Carta> getListaCartas() {
         return listaCartas;
@@ -46,5 +49,15 @@ public class Jugador {
     public void setPuntos(int puntos) {
         this.puntos = puntos;
     }
+
+    public int getPilasRobadas() {
+        return pilasRobadas;
+    }
+
+    public void setPilasRobadas(int pilasRobadas) {
+        this.pilasRobadas = pilasRobadas;
+    }
+    
+    
     
 }

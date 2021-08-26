@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Computadora extends Jugador{
 
     public Computadora(ArrayList<Carta> listaCartas, ArrayList<Carta> pilaCartas, int puntos) {
-        super(listaCartas, pilaCartas, puntos);
+        super();
     }
     
 }

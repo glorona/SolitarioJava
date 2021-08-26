@@ -15,8 +15,8 @@ import java.util.ArrayList;
 public class Humano extends Jugador {
     private String nombreH;
 
-    public Humano(String nombreH, ArrayList<Carta> listaCartas, ArrayList<Carta> pilaCartas, int puntos) {
-        super(listaCartas, pilaCartas, puntos);
+    public Humano() {
+        super();
         this.nombreH = nombreH;
     }
 
