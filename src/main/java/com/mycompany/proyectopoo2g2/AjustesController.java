@@ -28,7 +28,10 @@ public class AjustesController {
 
     public void initialize() {
        cmbCartas.getItems().setAll("Españolas", "Poker");
+       cmbCartas.getSelectionModel().select(App.cartaSeleccion); //items por defecto
        cmbSugerencias.getItems().setAll("Si", "No");
+       cmbSugerencias.getSelectionModel().select(App.mostraSugerencia);
+       
     }   
     @FXML
     private void switchToMenu() throws IOException {

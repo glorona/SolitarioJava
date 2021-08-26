@@ -5,8 +5,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="553.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectopoo2g2.PartidaController">
@@ -20,7 +21,6 @@
             </ImageView>
             <HBox fx:id="containerplayer" layoutX="180.0" layoutY="427.0" opacity="0.6" prefHeight="101.0" prefWidth="421.0" style="-fx-background-color: #808080;" />
             <HBox fx:id="containerCPU" layoutX="180.0" layoutY="56.0" opacity="0.6" prefHeight="91.0" prefWidth="421.0" style="-fx-background-color: #808080;" />
-            <HBox fx:id="containerMazo" layoutX="35.0" layoutY="221.0" opacity="0.6" prefHeight="139.0" prefWidth="104.0" style="-fx-background-color: #5680aa;" />
             <Label fx:id="tiempo" layoutX="393.0" layoutY="14.0" style="-fx-background-color: #5680aa;" text="Tiempo Transcurrido:">
                <font>
                   <Font name="Comic Sans MS" size="25.0" />
@@ -31,10 +31,11 @@
                   <Font name="Comic Sans MS" size="13.0" />
                </font>
             </Label>
-            <TilePane fx:id="containerCardsMesa" layoutX="179.0" layoutY="152.0" opacity="0.6" prefHeight="260.0" prefWidth="581.0" style="-fx-background-color: #aa5656;" />
-            <HBox fx:id="pilaCartasC" layoutX="35.0" layoutY="39.0" opacity="0.6" prefHeight="139.0" prefWidth="104.0" style="-fx-background-color: #aa5680;" />
-            <HBox fx:id="pilaCartasJ" layoutX="35.0" layoutY="394.0" opacity="0.6" prefHeight="139.0" prefWidth="104.0" style="-fx-background-color: #8056aa;" />
+            <FlowPane fx:id="containerCardsMesa" layoutX="172.0" layoutY="158.0" opacity="0.45" prefHeight="265.0" prefWidth="592.0" style="-fx-background-color: #aa5880;" />
             <Button fx:id="volverMenu" layoutX="12.0" layoutY="5.0" mnemonicParsing="false" onMouseClicked="#switchToMenu" prefHeight="26.0" prefWidth="79.0" text="Volver" />
+            <StackPane fx:id="stackCartasMazo" layoutX="26.0" layoutY="207.0" opacity="0.53" prefHeight="167.0" prefWidth="122.0" style="-fx-background-color: #FFFF;" />
+            <StackPane fx:id="stackCartasC" layoutX="35.0" layoutY="50.0" opacity="0.51" prefHeight="139.0" prefWidth="104.0" style="-fx-background-color: #aa5680;" />
+            <StackPane fx:id="stackCartasJ" layoutX="35.0" layoutY="390.0" opacity="0.6" prefHeight="150.0" prefWidth="104.0" style="-fx-background-color: #8056aa;" />
          </children>
       </AnchorPane>
    </children>

@@ -16,6 +16,13 @@ public class App extends Application {
 
    private static Stage stageapi;
     private static Scene scene;
+    public static  String rutaSpain = "Spain/";
+    public static String rutaPoker = "Poker/";
+    public static String rutaCubierta = "src/main/resources/Cubierta/";
+    public static String rutaArchivoPoker = "src/main/resources/archivosCartas/cartas.txt";
+    public static String rutaArchivoSpain = "src/main/resources/archivosCartas/CartasEspañolas.txt";
+    public static int cartaSeleccion;
+    public static int mostraSugerencia;
     
     
     //cargar fxml
@@ -35,6 +42,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        cartaSeleccion = 1; //poker por defecto
+        mostraSugerencia = 1; //si se muestran sugerencias por defecto
         stageapi = stage;
         scene = new Scene(loadFXML("menu"), 640, 480);
         stageapi.setScene(scene);

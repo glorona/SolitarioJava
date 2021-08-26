@@ -1,8 +1,14 @@
 com\mycompany\proyectopoo2g2\ReporteController.class
 com\mycompany\proyectopoo2g2\PartidaController$cuentaTiempo.class
 module-info.class
+Modelo\Computadora.class
 com\mycompany\proyectopoo2g2\IniciaApp.class
 com\mycompany\proyectopoo2g2\MenuController.class
 com\mycompany\proyectopoo2g2\PartidaController.class
 com\mycompany\proyectopoo2g2\App.class
+juego\Carta.class
+Modelo\Humano.class
+juego\Partida.class
+Modelo\Jugador.class
 com\mycompany\proyectopoo2g2\AjustesController.class
+juego\Poker.class
