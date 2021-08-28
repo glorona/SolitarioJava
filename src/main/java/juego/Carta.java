@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -19,7 +20,18 @@ public class Carta {
     private String valor;
     private boolean seleccion;
     private String rutaimg;
+    private ImageView imgcart;
 
+    public ImageView getImgcart() {
+        return imgcart;
+    }
+
+    public void setImgcart(ImageView imgcart) {
+        this.imgcart = imgcart;
+    }
+
+    
+    
     public String getRutaimg() {
         return rutaimg;
     }
@@ -103,6 +115,13 @@ public class Carta {
         this.rutaimg = rutaimg;
         this.seleccion = false;
     }
+
+    @Override
+    public String toString() {
+        return "Carta{" + "palo=" + palo + ", valor=" + valor + '}';
+    }
+    
+    
     
     
 }

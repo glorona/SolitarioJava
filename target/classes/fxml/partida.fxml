@@ -36,6 +36,12 @@
             <StackPane fx:id="stackCartasMazo" layoutX="26.0" layoutY="207.0" prefHeight="167.0" prefWidth="122.0" style="-fx-background-color: #FFFF;" />
             <StackPane fx:id="stackCartasC" layoutX="35.0" layoutY="50.0" prefHeight="139.0" prefWidth="104.0" style="-fx-background-color: #aa5680;" />
             <StackPane fx:id="stackCartasJ" layoutX="35.0" layoutY="390.0" prefHeight="150.0" prefWidth="104.0" style="-fx-background-color: #8056aa;" />
+            <Label fx:id="errores" layoutX="624.0" layoutY="491.0" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: #5680aa;" text="Errores:">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Label>
+            <Button fx:id="cartaMesa" layoutX="633.0" layoutY="528.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="104.0" text="Carta a Mesa" />
          </children>
       </AnchorPane>
    </children>
