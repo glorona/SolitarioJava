@@ -9,16 +9,20 @@ import juego.Carta;
 import juego.Partida;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.effect.ColorAdjust;
@@ -488,5 +492,30 @@ public class PartidaController implements Initializable {
         return String.format("Tiempo Transcurrido: %02d:%02d", min,sec);
     }
     }
+    
+    //@FXML
+    private void guardarPartida() {
+        ArrayList<Partida> listaPartidas = Partida.cargarInfo(App.rutaArchivoPart);//cargar la lista del archivo
+     
+        System.out.println("Guardando partida");
+        Partida p = new Partida(Date fecha, nombreJugador, int puntos, int puntosOponente, int diferenciaPuntaje, String tiempoPartida, int pilasRobadas);
+        listaPartidas.add(p);//agregar partida a la lista
+        System.out.println("Nuevo Partida:" + p);
+        
+        //serializar la lista
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.rutaArchivoPart))){
+          
+            out.writeObject(listaPartidas);
+            out.flush();
+            
+
+        } catch (IOException ex) {
+            System.out.println("IOException:" + ex.getMessage());
+        } 
+
+    }
+    
+    
+    
     
 }

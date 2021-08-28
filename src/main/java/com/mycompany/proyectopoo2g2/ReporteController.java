@@ -12,6 +12,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
 
 /**
  * FXML Controller class
@@ -23,6 +25,10 @@ public class ReporteController implements Initializable {
     
     @FXML
     private Button btnRegresar;
+    
+    @FXML 
+    private TableView tvInfo;
+    
 
 
     @Override

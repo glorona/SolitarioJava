@@ -6,6 +6,10 @@
 package juego;
 
 import Modelo.Jugador;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -113,6 +117,22 @@ public class Partida implements Comparable<Partida>, Serializable{
         return r;
     }
     
+    public static ArrayList<Partida> cargarInfo(String ruta) {
+        ArrayList<Partida> listaInfo = new ArrayList<>();
+
+       //leer la lista del archivo serializado
+        try (ObjectInputStream oi = new ObjectInputStream(new FileInputStream(ruta))) {
+            listaInfo = (ArrayList<Partida>) oi.readObject();
+            // System.out.println(listaInfo);
+        } catch (FileNotFoundException ex) {
+            System.out.println("archivo no existe");
+        } catch (IOException   ex) {
+            System.out.println("error io:"+ex.getMessage());
+        } catch (ClassNotFoundException  ex) {
+            System.out.println("error class:"+ex.getMessage());
+        } 
+        return listaInfo;
+    }
     
     
 }

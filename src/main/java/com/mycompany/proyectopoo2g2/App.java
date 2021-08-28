@@ -24,6 +24,8 @@ public class App extends Application {
     public static int cartaSeleccion;
     public static int mostraSugerencia;
     
+    public static String rutaArchivoPart;
+    
     
     //cargar fxml
     private static Parent loadFXML(String fxml) throws IOException {
