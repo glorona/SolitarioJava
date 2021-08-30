@@ -8,6 +8,8 @@ package juego;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import javafx.scene.image.ImageView;
 
@@ -78,8 +80,8 @@ public class Carta {
         
      public static ArrayList<Carta> obtenerCartas(String ruta){
          ArrayList<Carta> mazo = new ArrayList<>();
-         try{
-             BufferedReader lector = new BufferedReader(new FileReader(ruta));
+         try(InputStream input = Carta.class.getClassLoader().getResourceAsStream(ruta)){
+             BufferedReader lector = new BufferedReader(new InputStreamReader(input));
              String linea = null;
              while((linea = lector.readLine())!= null){
                  String[] datos = linea.split(",");

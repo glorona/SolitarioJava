@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -288,16 +289,15 @@ public class PartidaController implements Initializable, Serializable {
         }
         //cargar la foto
         try{
-            String rutaimg;
+            InputStream rutaimg;
         if(cubierta){
-            rutaimg =URLDecoder.decode(App.class.getResource("/" + tipo + "/" + "back.png").getPath(),"UTF-8");
+             rutaimg =App.class.getResource("/" + tipo + "/" + "back.png").openStream();
         
         }
         else{
-           rutaimg =URLDecoder.decode(App.class.getResource("/" + tipo + "/" + c.getRutaimg()).getPath(),"UTF-8");
+           rutaimg = App.class.getResource("/" + tipo + "/" + c.getRutaimg()).openStream();
         }
-        FileInputStream ins = new FileInputStream(rutaimg);
-        Image imcard = new Image(ins, 80,100,false,false);
+        Image imcard = new Image(rutaimg, 80,100,false,false);
         iv.setImage(imcard);
         c.setImgcart(iv);
         
@@ -413,11 +413,11 @@ public class PartidaController implements Initializable, Serializable {
         //genera las rutas 
         try{
             if(App.cartaSeleccion == 1){
-                ruta = URLDecoder.decode(App.class.getResource(App.rutaArchivoPoker).getPath(),"UTF-8");
+                ruta = App.rutaArchivoPoker;
                 System.out.println(ruta);
             }
             else{
-                ruta = URLDecoder.decode(App.class.getResource(App.rutaArchivoSpain).getPath(),"UTF-8");
+                ruta = App.rutaArchivoSpain;
                 System.out.println(ruta);
             }
         }

@@ -19,12 +19,12 @@ public class App extends Application {
     public static  String rutaSpain = "Spain/";
     public static String rutaPoker = "Poker/";
     public static String rutaCubierta = "src/main/resources/Cubierta/";
-    public static String rutaArchivoPoker = "/archivosCartas/cartas.txt";
-    public static String rutaArchivoSpain = "/archivosCartas/CartasEspañolas.txt";
+    public static String rutaArchivoPoker = "archivosCartas/cartas.txt";
+    public static String rutaArchivoSpain = "archivosCartas/CartasEspañolas.txt";
     public static int cartaSeleccion;
     public static int mostraSugerencia;
     
-    public static String rutaArchivoPart = "src/main/resources/archivosCartas/partidas.ser" ;
+    public static String rutaArchivoPart = "archivos/partidas.ser" ;
     
     
     //cargar fxml
