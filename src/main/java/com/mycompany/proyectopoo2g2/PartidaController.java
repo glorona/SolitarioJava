@@ -9,11 +9,14 @@ import juego.Carta;
 import juego.Partida;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -66,7 +69,7 @@ public class PartidaController implements Initializable, Serializable {
     
     private Carta cardSelect2;
     
-    private String nombreJugador;
+    public static String nombreJugador;
     
     private ArrayList<Carta> mazo;
     
@@ -86,11 +89,13 @@ public class PartidaController implements Initializable, Serializable {
     private String ruta;
     
     
-    public int pilasRobadas; //se asume que es un valor por los dos
+    public static int pilasRobadas; //se asume que es un valor por los dos
     
-    public int puntosJ;
+    public static int puntosJ;
     
-    public int puntosC;
+    public static int puntosC;
+    
+    public static int diferencia;
     
     
     
@@ -197,6 +202,12 @@ public class PartidaController implements Initializable, Serializable {
         
         return confM;
  
+    }
+    
+    private void calcularPuntos(ArrayList<Carta> pilaJug, ArrayList<Carta> pilaCom){
+        puntosC = pilaCom.size();
+        puntosJ = pilaJug.size();
+        diferencia = puntosJ - puntosC;
     }
     
    
@@ -321,6 +332,8 @@ public class PartidaController implements Initializable, Serializable {
                 if(cr.getValor().equals(c.getValor())){
                     cardSelect = c;
                     cardSelect2 = cr;
+                    System.out.println("CARTA COMPUTADORA AL ROBO" + cardSelect.toString());
+                    System.out.println("CARTA COMPUTADORA 2 AL ROBO" + cardSelect2.toString());
                     confirmarRobo = true;
                     
 
@@ -330,12 +343,15 @@ public class PartidaController implements Initializable, Serializable {
                     if(c.getValor().equals(c2.getValor()) && cardSelect == null){
                         cardSelect = c;
                         cardSelect2 = c2;
+                        System.out.println("CARTA COMPUTADORA A LA PILA" + cardSelect.toString());
+                        System.out.println("CARTA COMPUTADORA 2 A LA PILA" + cardSelect2.toString());
                         
                     }
                     
                 }
                 
             }
+            
             if(cardSelect == null){ //jugar cualquier cosa a la mesa
             Carta c = mano.get(rand.nextInt(mano.size()));
             //selecciona carta aleatoria de mesa
@@ -361,10 +377,12 @@ public class PartidaController implements Initializable, Serializable {
                 confirmacionPila = jugarCartaPila(cardSelect,cardSelect2,mano,pila);
                 
             if (confirmacionPila){
+                System.out.println("CARTA COMPUTADORA A LA PILA" + cardSelect.toString());
+                System.out.println("CARTA COMPUTADORA 2 A LA PILA" + cardSelect2.toString());
+                generarVistaCarta(cardSelect.getImgcart(),cardSelect,"Poker", false);
                 containerCardsMesa.getChildren().remove(cardSelect2.getImgcart());
                 // sacar la carta de la mano del jugador
                 containerCPU.getChildren().remove(cardSelect.getImgcart());
-                generarVistaCarta(cardSelect.getImgcart(),cardSelect,"Poker", false);
                 stackCartasC.getChildren().addAll(cardSelect2.getImgcart(), cardSelect.getImgcart());
                 cardSelect = null;
                 cardSelect2 = null;
@@ -413,10 +431,10 @@ public class PartidaController implements Initializable, Serializable {
             ImageView iv = new ImageView();
             
             try{
-               Carta  c = mazo.get(i);
+               Carta  c = mazo.get(0);
                generarVistaCarta(iv,c,"Poker", false);
                 mesa.add(c);
-                mazo.remove(i);
+                mazo.remove(0);
                 
                 iv.setOnMouseClicked(ev -> {
                     
@@ -458,7 +476,10 @@ public class PartidaController implements Initializable, Serializable {
                 else if(mazo.size() == 0 && manoJ.size() == 0 && manoC.size() ==0 ){
                     try{
                         System.out.println("Fin de la partida!");
+                        //calcularPuntos
+                        calcularPuntos(pilaJ,pilaC);
                         //llamar al metodo escribirpartida
+                        guardarPartida();
                     App.cambioScene("FinPartida");
                     }
                     catch (IOException ex ){
@@ -512,12 +533,13 @@ public class PartidaController implements Initializable, Serializable {
                     if(cardSelect != null){ //borre una variable global que ya no se usa, si se cae es culpa de ella
                         jugarCartaMesa(cardSelect, manoJ, containerplayer);
                         cardSelect = null;
+                        cardSelect2 = null;
                         turnoComputadora(manoC,pilaC,mesa,containerCPU);
                     }
 
                     else{
                         cardSelect = null;
-                        
+                        cardSelect2 = null;
                     }
 
                 });
@@ -629,19 +651,19 @@ public class PartidaController implements Initializable, Serializable {
 
         @Override
         public String toString() {
-            return "Minutos: " + min + " Segundos: " + sec;
+            return  min + ":" + sec;
         }
     
     
     }
     
-    /*
+
     //@FXML
     private void guardarPartida() {
         ArrayList<Partida> listaPartidas = Partida.cargarInfo(App.rutaArchivoPart);//cargar la lista del archivo
-     
+         java.util.Date date=new java.util.Date();  
         System.out.println("Guardando partida");
-        Partida p = new Partida(Date fecha, nombreJugador, int puntos, int puntosOponente, int diferenciaPuntaje, String tiempoPartida, int pilasRobadas);
+        Partida p = new Partida(date, nombreJugador, puntosJ, puntosC, diferencia, time.toString(), pilasRobadas);
         listaPartidas.add(p);//agregar partida a la lista
         System.out.println("Nuevo Partida:" + p);
         
@@ -659,6 +681,6 @@ public class PartidaController implements Initializable, Serializable {
     }
     
     
-    */
+
     
 }

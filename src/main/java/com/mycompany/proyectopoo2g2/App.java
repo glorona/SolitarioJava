@@ -24,7 +24,7 @@ public class App extends Application {
     public static int cartaSeleccion;
     public static int mostraSugerencia;
     
-    public static String rutaArchivoPart;
+    public static String rutaArchivoPart = "src/main/resources/archivosCartas/partidas.ser" ;
     
     
     //cargar fxml
