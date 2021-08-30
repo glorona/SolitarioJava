@@ -269,6 +269,12 @@ public class PartidaController implements Initializable, Serializable {
     }
     
     private void generarVistaCarta(ImageView iv,Carta c, String tipo, boolean cubierta ){
+        if(App.cartaSeleccion == 1){
+            tipo = "Poker";
+        }
+        else{
+            tipo = "Spain";
+        }
         //cargar la foto
         try{
             String rutaimg;
@@ -449,7 +455,7 @@ public class PartidaController implements Initializable, Serializable {
                     repartirMesa();
                     System.out.println("Cartas restantes: " + mazo.size());
         }
-                else if(mazo.size() == 0 ){
+                else if(mazo.size() == 0 && manoJ.size() == 0 && manoC.size() ==0 ){
                     try{
                         System.out.println("Fin de la partida!");
                         //llamar al metodo escribirpartida
@@ -480,9 +486,7 @@ public class PartidaController implements Initializable, Serializable {
     
     private void repartirMesa(){
    
-        if(App.cartaSeleccion == 1){ //poker
             
-        
         for(int i=0; i<3;i++){ //repartir cartas de jugador
             System.out.println("Creando imagen....");
             ImageView ivJ = new ImageView(); //imageview
@@ -566,94 +570,7 @@ public class PartidaController implements Initializable, Serializable {
             
           
             
-        }
-        
-        if(App.cartaSeleccion == 0){ //espaniolas
-            
-        ArrayList<Carta> mazo = Carta.obtenerCartas(App.rutaArchivoSpain);
-        Partida.barajarMazo(mazo);
-        
-        for(int i=0; i<3;i++){ //repartir cartas de jugador
-            System.out.println("Creando imagen....");
-            ImageView iv = new ImageView();
-            
-            try{
-                String rutaimg =URLDecoder.decode(App.class.getResource("/Spain/" + mazo.get(i).getRutaimg()).getPath(),"UTF-8");
-                FileInputStream ins = new FileInputStream(rutaimg);
-                Image imcard = new Image(ins, 80,100,false,false);
-                iv.setImage(imcard);
-                mazo.remove(i);
-                
-            }
-            catch(IOException ex){
-                System.out.println(ex.getMessage());
-            }
-            
-            containerplayer.getChildren().add(iv);
-            
-        }
-            
-            for(int z=0; z<3;z++){ //repartir cartas de cpu
-            
-            ImageView ivc = new ImageView();
-            
-            try{
-                String rutaimg = URLDecoder.decode(App.class.getResource("/Cubierta/" + "back2.png").getPath(),"UTF-8");
-                FileInputStream ins = new FileInputStream(rutaimg);
-                Image imcard = new Image(ins, 80,100,false,false);
-                ivc.setImage(imcard);
-                mazo.remove(z);
-                
-            }
-            catch(IOException ex){
-                System.out.println(ex.getMessage());
-            }
-            
-            containerCPU.getChildren().add(ivc);
-            
-            
-            
-            
-        }
-            
-            for(int i=0; i<4;i++){ //repartir cartas de mesa
-            ImageView iv = new ImageView();
-            
-            try{
-                String rutaimg =URLDecoder.decode(App.class.getResource("/Spain/" + mazo.get(i).getRutaimg()).getPath(),"UTF-8");
-                FileInputStream ins = new FileInputStream(rutaimg);
-                Image imcard = new Image(ins, 120,150,false,false);
-                iv.setImage(imcard);
-                mazo.remove(i);
-                
-            }
-            catch(IOException ex){
-                System.out.println(ex.getMessage());
-            }
-            
-            containerCardsMesa.getChildren().add(iv);
-            
-        }
-            
-            for (Carta c: mazo){ //anadir al stackpane
-            ImageView iv = new ImageView();
-            
-            try{
-                String rutaimg = URLDecoder.decode(App.class.getResource("/Cubierta/" + "back2.png").getPath(),"UTF-8");
-                FileInputStream ins = new FileInputStream(rutaimg);
-                Image imcard = new Image(ins, 120,150,false,false);
-                iv.setImage(imcard);
-                
-            }
-            catch(IOException ex){
-                System.out.println(ex.getMessage());
-            }
-            
-            stackCartasMazo.getChildren().add(iv);
-            
-        }
-            
-        }
+      
         System.out.println("Jugador");
         for(int i=0; i<manoJ.size();i++){ //repartir cartas de jugador
             System.out.print(manoJ.get(i).getValor()+" ");

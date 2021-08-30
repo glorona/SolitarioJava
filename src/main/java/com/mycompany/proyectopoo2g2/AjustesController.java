@@ -26,7 +26,7 @@ public class AjustesController {
     @FXML
     ComboBox cmbCartas;
     
-    
+
 
     public void initialize() {
        cmbCartas.getItems().setAll("Españolas", "Poker");
@@ -34,10 +34,18 @@ public class AjustesController {
        cmbSugerencias.getItems().setAll("Si", "No");
        cmbSugerencias.getSelectionModel().select(App.mostraSugerencia);
        
+       cmbCartas.setOnAction((event) -> {
+        App.cartaSeleccion = cmbCartas.getSelectionModel().getSelectedIndex();
+  
+
+});
+       
+       
     }   
     @FXML
     private void switchToMenu() throws IOException {
         App.cambioScene("menu");
     }
+    
     
 }

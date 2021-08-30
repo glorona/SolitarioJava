@@ -18,9 +18,34 @@
       <Button fx:id="volverMenu" layoutX="255.0" layoutY="370.0" mnemonicParsing="false" onAction="#switchToMenu" text="Volver al menu" />
       <VBox fx:id="finpar" layoutX="36.0" layoutY="13.0" prefHeight="343.0" prefWidth="543.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <Label prefHeight="40.0" prefWidth="550.0" text="         FIN DE LA PARTIDA!" textAlignment="CENTER">
+            <Label prefHeight="31.0" prefWidth="543.0" text="         FIN DE LA PARTIDA!" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS Bold" size="29.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelJugador" prefHeight="47.0" prefWidth="544.0" text="Nombre del Jugador:">
+               <font>
+                  <Font name="Broadway" size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelPuntos" layoutX="10.0" layoutY="51.0" prefHeight="48.0" prefWidth="544.0" text="Tus puntos: ">
+               <font>
+                  <Font name="Broadway" size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelPuntosO" layoutX="10.0" layoutY="101.0" prefHeight="57.0" prefWidth="547.0" text="Puntos del Oponente:">
+               <font>
+                  <Font name="Broadway" size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="pilas" layoutX="10.0" layoutY="151.0" prefHeight="54.0" prefWidth="544.0" text="Pilas Robadas: ">
+               <font>
+                  <Font name="Broadway" size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="ganador" layoutX="10.0" layoutY="203.0" prefHeight="54.0" prefWidth="544.0" text="Ganador: ">
+               <font>
+                  <Font name="Broadway" size="23.0" />
                </font>
             </Label>
          </children>
