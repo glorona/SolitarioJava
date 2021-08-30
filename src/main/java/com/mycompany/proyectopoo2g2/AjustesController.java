@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -24,6 +25,7 @@ public class AjustesController {
     ComboBox cmbSugerencias;
     @FXML
     ComboBox cmbCartas;
+    
     
 
     public void initialize() {

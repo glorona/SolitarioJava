@@ -11,5 +11,5 @@ Modelo\Humano.class
 juego\Partida.class
 Modelo\Jugador.class
 com\mycompany\proyectopoo2g2\AjustesController.class
+com\mycompany\proyectopoo2g2\FinPartidaController.class
 juego\Poker.class
-com\mycompany\proyectopoo2g2\FInPartidaController.class

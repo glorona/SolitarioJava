@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -7,15 +8,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="com.mycompany.proyectopoo2g2.FInPartidaController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectopoo2g2.FinPartidaController">
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
          <image>
             <Image url="@../Cubierta/endmatch.jpg" />
          </image>
       </ImageView>
-      <VBox fx:id="finpar" layoutX="36.0" layoutY="13.0" prefHeight="374.0" prefWidth="543.0" style="-fx-background-color: #FFFFFF;">
+      <Button fx:id="volverMenu" layoutX="255.0" layoutY="370.0" mnemonicParsing="false" onAction="#switchToMenu" text="Volver al menu" />
+      <VBox fx:id="finpar" layoutX="36.0" layoutY="13.0" prefHeight="343.0" prefWidth="543.0" style="-fx-background-color: #FFFFFF;">
          <children>
             <Label prefHeight="40.0" prefWidth="550.0" text="         FIN DE LA PARTIDA!" textAlignment="CENTER">
                <font>

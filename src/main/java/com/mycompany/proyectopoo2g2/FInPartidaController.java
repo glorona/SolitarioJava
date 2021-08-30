@@ -6,10 +6,12 @@ package com.mycompany.proyectopoo2g2;
  * and open the template in the editor.
  */
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
@@ -18,10 +20,22 @@ import javafx.scene.layout.VBox;
  *
  * @author gabri
  */
-public class FInPartidaController implements Initializable {
+public class FinPartidaController implements Initializable {
     
     @FXML
     private VBox finpar;
+     @FXML
+    private Button volverMenu;
+     @FXML
+    private Label labelJugador;
+     @FXML
+    private Label labelPuntos;
+     @FXML
+    private Label labelPuntosO;
+     @FXML
+    private Label pilas;
+     @FXML
+    private Label ganador;
 
     /**
      * Initializes the controller class.
@@ -29,6 +43,13 @@ public class FInPartidaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+
+    @FXML
+    private void switchToMenu() throws IOException {
+        System.out.println("Volviendo al Menu Principal...");
+        App.cambioScene("menu");
+    }
+    
     
 }

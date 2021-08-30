@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ import javafx.scene.paint.Color;
 
 
 
-public class PartidaController implements Initializable {
+public class PartidaController implements Initializable, Serializable {
     
     
     private cuentaTiempo time;
@@ -84,6 +85,17 @@ public class PartidaController implements Initializable {
     
     private String ruta;
     
+    
+    public int pilasRobadas; //se asume que es un valor por los dos
+    
+    public int puntosJ;
+    
+    public int puntosC;
+    
+    
+    
+    
+    
 
     /**
      * Initializes the controller class.
@@ -130,17 +142,20 @@ public class PartidaController implements Initializable {
             sj.getChildren().add(cardSelect.getImgcart()); //agrego la ultima carta
             containerplayer.getChildren().remove(cardSelect.getImgcart()); //la saco de la mano del que juega la carta
             manoJ.remove(cardSelect);
-            
-            
+            pilasRobadas++;
 
-            
         }
         else{
+            
+            System.out.println("carta robapila" + c.toString());
             pilaC.addAll(pilaJ); //robo todo digitalmente
             sc.getChildren().addAll(sj.getChildren()); //me llevo toda la pila
             sj.getChildren().clear(); //chao pila de rival
-            sc.getChildren().add(c.getImgcart()); //agrego la ultima carta
-            containerCPU.getChildren().remove(c.getImgcart()); //la saco de la mano del que juega la carta
+            sc.getChildren().add(cardSelect.getImgcart()); //agrego la ultima carta
+            containerCPU.getChildren().remove(cardSelect.getImgcart()); //la saco de la mano del que juega la carta
+            manoC.remove(cardSelect);
+            pilasRobadas++;
+            
         }
         
     }
@@ -280,13 +295,31 @@ public class PartidaController implements Initializable {
     private void turnoComputadora(ArrayList<Carta> mano, ArrayList<Carta> pila, ArrayList<Carta> mesa, HBox contenedor){
         boolean confirmacionTurno = true;
         boolean confirmacionPila = false;
+        boolean confirmarRobo = false;
+        Carta cr = null;
         //si la carta aleatoria seleccionada por la maquina se juega a la pila
 //Tiene que jugar carta a Para aumentar su pila
         do{
             //crear random
             Random rand = new Random();
+            //buscar carta encima de la pila del jugador
+            if(pilaJ.size() != 0){
+                cr = pilaJ.get(pilaJ.size() - 1); //carta encima de la pila jugador
+                System.out.println(cr.toString());
+   
+            }
+            
             //selecciona carta a robar
             for(Carta c: mano){
+                if(cr != null){
+                if(cr.getValor().equals(c.getValor())){
+                    cardSelect = c;
+                    cardSelect2 = cr;
+                    confirmarRobo = true;
+                    
+
+                }
+                }
                 for(Carta c2: mesa){
                     if(c.getValor().equals(c2.getValor()) && cardSelect == null){
                         cardSelect = c;
@@ -295,21 +328,32 @@ public class PartidaController implements Initializable {
                     }
                     
                 }
+                
             }
-            if(cardSelect == null){
+            if(cardSelect == null){ //jugar cualquier cosa a la mesa
             Carta c = mano.get(rand.nextInt(mano.size()));
             //selecciona carta aleatoria de mesa
-            Carta c2 = mesa.get(rand.nextInt(mesa.size()));
+            //Carta c2 = mesa.get(rand.nextInt(mesa.size()));
             cardSelect = c;
-            cardSelect2 = c2;
+            //cardSelect2 = c2;
             jugarCartaMesa(cardSelect,mano,contenedor);
             generarVistaCarta(cardSelect.getImgcart(),cardSelect,"Poker", false);
             confirmacionTurno = false;
             cardSelect = null;
             cardSelect2 = null;
             }
-            else{
+            else if(confirmarRobo){ //robando pila
+                 generarVistaCarta(cardSelect.getImgcart(),cardSelect,"Poker", false);
+                 robaPila( cardSelect2, pilaJ, pilaC, stackCartasJ, stackCartasC, false);
+                cardSelect = null;
+                cardSelect2 = null;
+                confirmacionTurno = false;
+                
+                
+            }
+            else{ //robar mesa
                 confirmacionPila = jugarCartaPila(cardSelect,cardSelect2,mano,pila);
+                
             if (confirmacionPila){
                 containerCardsMesa.getChildren().remove(cardSelect2.getImgcart());
                 // sacar la carta de la mano del jugador
@@ -399,12 +443,22 @@ public class PartidaController implements Initializable {
                 generarVistaCarta(iv,c,"Poker", true);
                 
                 stackCartasMazo.setOnMouseClicked(ev -> {
-                    System.out.println("Click en mazo, VALORES"  + manoJ.size() + " " +  manoC.size());
+                   
                     
                 if(manoJ.size() == 0 && manoC.size() ==0 && mazo.size() != 0){
                     repartirMesa();
                     System.out.println("Cartas restantes: " + mazo.size());
         }
+                else if(mazo.size() == 0 ){
+                    try{
+                        System.out.println("Fin de la partida!");
+                        //llamar al metodo escribirpartida
+                    App.cambioScene("FinPartida");
+                    }
+                    catch (IOException ex ){
+                        System.out.println(ex.getMessage());
+                    }
+                }
                 
             });
                 
@@ -647,6 +701,21 @@ public class PartidaController implements Initializable {
         }
         return String.format("Tiempo Transcurrido: %02d:%02d", min,sec);
     }
+
+        public int getSec() {
+            return sec;
+        }
+
+        public int getMin() {
+            return min;
+        }
+
+        @Override
+        public String toString() {
+            return "Minutos: " + min + " Segundos: " + sec;
+        }
+    
+    
     }
     
     /*
