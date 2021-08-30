@@ -19,8 +19,8 @@ public class App extends Application {
     public static  String rutaSpain = "Spain/";
     public static String rutaPoker = "Poker/";
     public static String rutaCubierta = "src/main/resources/Cubierta/";
-    public static String rutaArchivoPoker = "src/main/resources/archivosCartas/cartas.txt";
-    public static String rutaArchivoSpain = "src/main/resources/archivosCartas/CartasEspañolas.txt";
+    public static String rutaArchivoPoker = "/archivosCartas/cartas.txt";
+    public static String rutaArchivoSpain = "/archivosCartas/CartasEspañolas.txt";
     public static int cartaSeleccion;
     public static int mostraSugerencia;
     

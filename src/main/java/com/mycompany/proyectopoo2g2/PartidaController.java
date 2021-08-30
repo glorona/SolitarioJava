@@ -82,6 +82,7 @@ public class PartidaController implements Initializable {
 
     private int cantErr;
     
+    private String ruta;
     
 
     /**
@@ -122,14 +123,19 @@ public class PartidaController implements Initializable {
     
     private void robaPila(Carta c,ArrayList<Carta> pilaJ, ArrayList<Carta> pilaC, StackPane sj, StackPane sc, boolean turno){
         if(turno){
+            System.out.println("carta robapila" + c.toString());
             pilaJ.addAll(pilaC); //robo todo digitalmente
             sj.getChildren().addAll(sc.getChildren()); //me llevo toda la pila
             sc.getChildren().clear(); //chao pila de rival
-            sj.getChildren().add(c.getImgcart()); //agrego la ultima carta
-            containerplayer.getChildren().remove(c.getImgcart()); //la saco de la mano del que juega la carta
+            sj.getChildren().add(cardSelect.getImgcart()); //agrego la ultima carta
+            containerplayer.getChildren().remove(cardSelect.getImgcart()); //la saco de la mano del que juega la carta
+            manoJ.remove(cardSelect);
+            
+            
+
             
         }
-        if(turno){
+        else{
             pilaC.addAll(pilaJ); //robo todo digitalmente
             sc.getChildren().addAll(sj.getChildren()); //me llevo toda la pila
             sj.getChildren().clear(); //chao pila de rival
@@ -224,11 +230,20 @@ public class PartidaController implements Initializable {
                     } 
                     
         }
-        else if( cardSelect != null &&(iv.getParent().getId().equals(stackCartasJ.getParent().getId()) || iv.getParent().getId().equals(stackCartasC.getParent().getId()))){
+        else if( cardSelect != null &&(iv.getParent().getId().equals(stackCartasJ.getId()) || iv.getParent().getId().equals(stackCartasC.getId()))){
             cardSelect2 = c;
+            System.out.println("Roba pila");
+            cardSelect.getImgcart().setEffect(null);
+            cardSelect2.getImgcart().setEffect(null);
             if(cardSelect.getValor().equals(cardSelect2.getValor())){
                 boolean llamada = (cardSelect.getImgcart().getParent().getId().equals(containerplayer.getId()));
+                System.out.println("Se hace llamada a robar pila");
                 robaPila( c, pilaJ, pilaC, stackCartasJ, stackCartasC, llamada);
+                
+                cardSelect = null;
+                cardSelect2 = null;
+                turnoComputadora(manoC,pilaC,mesa,containerCPU);
+                
             }
         }
         
@@ -290,20 +305,24 @@ public class PartidaController implements Initializable {
             jugarCartaMesa(cardSelect,mano,contenedor);
             generarVistaCarta(cardSelect.getImgcart(),cardSelect,"Poker", false);
             confirmacionTurno = false;
+            cardSelect = null;
+            cardSelect2 = null;
             }
-            confirmacionPila = jugarCartaPila(cardSelect,cardSelect2,mano,pila);
+            else{
+                confirmacionPila = jugarCartaPila(cardSelect,cardSelect2,mano,pila);
             if (confirmacionPila){
-                containerCardsMesa.getChildren().remove(cardSelect.getImgcart());
+                containerCardsMesa.getChildren().remove(cardSelect2.getImgcart());
                 // sacar la carta de la mano del jugador
                 containerCPU.getChildren().remove(cardSelect.getImgcart());
                 generarVistaCarta(cardSelect.getImgcart(),cardSelect,"Poker", false);
-                stackCartasC.getChildren().add(cardSelect2.getImgcart());
-                stackCartasC.getChildren().add(cardSelect.getImgcart());
-                
+                stackCartasC.getChildren().addAll(cardSelect2.getImgcart(), cardSelect.getImgcart());
                 cardSelect = null;
                 cardSelect2 = null;
                 confirmacionTurno = false;
             }
+                
+            }
+            
             //setear imagen boca arriba en el iv de la carta a jugar de la maq
             
             
@@ -323,7 +342,22 @@ public class PartidaController implements Initializable {
         
         jugador.setText("Jugador: " + nombreJugador);
         errores.setText("Errores: " + cantErr);
-        mazo = Carta.obtenerCartas(App.rutaArchivoPoker);
+        //genera las rutas 
+        try{
+            if(App.cartaSeleccion == 1){
+                ruta = URLDecoder.decode(App.class.getResource(App.rutaArchivoPoker).getPath(),"UTF-8");
+                System.out.println(ruta);
+            }
+            else{
+                ruta = URLDecoder.decode(App.class.getResource(App.rutaArchivoSpain).getPath(),"UTF-8");
+                System.out.println(ruta);
+            }
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+            
+        }
+        mazo = Carta.obtenerCartas(ruta);
         Partida.barajarMazo(mazo);
          for(int i=0; i<4;i++){ //repartir cartas de mesa
             ImageView iv = new ImageView();
@@ -362,20 +396,20 @@ public class PartidaController implements Initializable {
             ImageView iv = new ImageView();
             
             try{
-                String rutaimg = URLDecoder.decode(App.class.getResource("/Cubierta/" + "back1.png").getPath(),"UTF-8");
-                FileInputStream ins = new FileInputStream(rutaimg);
-                Image imcard = new Image(ins, 120,150,false,false);
-                iv.setImage(imcard);
+                generarVistaCarta(iv,c,"Poker", true);
                 
                 stackCartasMazo.setOnMouseClicked(ev -> {
+                    System.out.println("Click en mazo, VALORES"  + manoJ.size() + " " +  manoC.size());
+                    
                 if(manoJ.size() == 0 && manoC.size() ==0 && mazo.size() != 0){
                     repartirMesa();
+                    System.out.println("Cartas restantes: " + mazo.size());
         }
                 
             });
                 
             }
-            catch(IOException ex){
+            catch(Exception ex){
                 System.out.println(ex.getMessage());
             }
             
@@ -400,10 +434,10 @@ public class PartidaController implements Initializable {
             ImageView ivJ = new ImageView(); //imageview
             
             try{
-                Carta c = mazo.get(i);
+                Carta c = mazo.get(0);
                 generarVistaCarta(ivJ,c,"Poker", false);
                 manoJ.add(c);
-                mazo.remove(i);
+                mazo.remove(0);
                 
                 
                 ivJ.setOnMouseClicked(ev -> {
@@ -412,12 +446,7 @@ public class PartidaController implements Initializable {
                     }
                     
                     clickCarta(c.getImgcart(),c, "a");
-                    /*
-                    System.out.println("Carta seleccionada: " + c.getValor());
-                    ColorAdjust colorAdjust = new ColorAdjust();
-                    colorAdjust.setSaturation(0.8);
-                    ivJ.setEffect(colorAdjust);
-                    */
+
                 });
                 
                 cartaMesa.setOnMouseClicked(ev ->{
@@ -435,10 +464,7 @@ public class PartidaController implements Initializable {
 
                 });
                 
-                stackCartasJ.setOnMouseClicked(ev ->{
-                    clickCarta(c.getImgcart(),c, "a");
-
-                });
+                
                 
                 
                 
@@ -458,10 +484,10 @@ public class PartidaController implements Initializable {
             ImageView ivc = new ImageView();
             
             try{
-                Carta c = mazo.get(z);
+                Carta c = mazo.get(0);
                 generarVistaCarta(ivc,c,"Poker", true);
                 manoC.add(c);
-                mazo.remove(z);
+                mazo.remove(0);
                 
                 
                 ivc.setOnMouseClicked(ev -> {
