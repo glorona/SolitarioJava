@@ -42,7 +42,21 @@ public class FinPartidaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+          labelJugador.setText("Jugador: " + PartidaController.nombreJugador);
+          labelPuntos.setText("Puntos: " + PartidaController.puntosJ);
+          labelPuntosO.setText("Puntos Oponente: " + PartidaController.puntosC);
+           pilas.setText("Pilas robadas: " + PartidaController.pilasRobadas);
+           if(PartidaController.diferencia > 0){
+               ganador.setText("Ganador: " + PartidaController.nombreJugador);
+               
+           }
+           else if (PartidaController.diferencia == 0){
+               ganador.setText("Ganador: Es un empate !");
+        
+    }
+           else{
+               ganador.setText("Ganador:  CPU" );
+           }
     }
 
     @FXML
